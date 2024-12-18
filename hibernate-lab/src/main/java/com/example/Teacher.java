@@ -25,7 +25,7 @@ public class Teacher {
     @Column(name = "birth_year")
     private int birthYear;
 
-    @Column(name = "salary")
+    @Column(name = "salary") //ssss
     private double salary;
 
     // Gettery i settery
