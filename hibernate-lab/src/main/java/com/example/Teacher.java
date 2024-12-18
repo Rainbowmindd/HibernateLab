@@ -20,7 +20,7 @@ public class Teacher {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private TeacherCondition status;
+    private TeacherCondition status;  //sdajhds
 
     @Column(name = "birth_year")
     private int birthYear;
