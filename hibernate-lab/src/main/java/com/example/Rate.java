@@ -75,4 +75,8 @@ public class Rate {
     public void setComment(String comment) {
         this.comment = comment;
     }
+    public String toString() {
+        return "Rate [id=" + id + ", value=" + value + ", classTeacher=" + classTeacher.getTeacherGroupName()
+                + ", date=" + date + ", comment=" + comment + "]";
+    }
 }

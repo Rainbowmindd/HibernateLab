@@ -61,12 +61,33 @@ public class Teacher {
         return name;
     }
     public void setName(String name) {}
-    // Pozostałe gettery i settery...
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
 
     public void setClassTeacher(ClassTeacher classTeacher) {
         this.classTeacher = classTeacher;
     }
+    public ClassTeacher getClassTeacher() { return classTeacher; }
 
+    public void setBirthYear(int birthYear) {
+        this.birthYear = birthYear;
+    }
 
+    public int getBirthYear() {
+        return birthYear;
+    }
 
+    public TeacherCondition getStatus() {
+        return status;
+    }
+
+    public void setStatus(TeacherCondition status) {
+        this.status = status;
+    }
 }
