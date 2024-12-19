@@ -27,6 +27,9 @@ public class Teacher {
 
     @Column(name = "salary") //ssss
     private double salary;
+    @ManyToOne
+    @JoinColumn(name = "class_teacher_id") // Foreign key do ClassTeacher
+    private ClassTeacher classTeacher;
 
     // Gettery i settery
 
@@ -59,4 +62,11 @@ public class Teacher {
     }
     public void setName(String name) {}
     // Pozostałe gettery i settery...
+
+    public void setClassTeacher(ClassTeacher classTeacher) {
+        this.classTeacher = classTeacher;
+    }
+
+
+
 }

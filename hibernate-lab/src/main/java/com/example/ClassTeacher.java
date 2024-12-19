@@ -1,5 +1,7 @@
 package com.example;
 
+import org.hibernate.Session;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -67,7 +69,7 @@ public class ClassTeacher {
     }
 
     // Metody zarządzające nauczycielami w klasie
-    public void addTeacher(Teacher teacher) {
+    public void addTeacher(Session session, Teacher teacher) {
         if (listTeachers.size() >= maxTeacherNumber) {
             System.out.println("GROUP IS FULL, cannot add new teacher");
             return;
@@ -83,10 +85,12 @@ public class ClassTeacher {
         if (exists) {
             System.out.println("This teacher ALREADY EXISTS in this group");
         } else {
-            listTeachers.add(teacher);
+            session.save(teacher);
+            listTeachers.add(teacher);  // Dodajemy również do listy
             System.out.println("Teacher added successfully");
         }
     }
+
 
     // Inne metody (addSalary, removeTeacher, changeCondition itp.)...
 }

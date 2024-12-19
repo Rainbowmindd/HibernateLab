@@ -28,5 +28,10 @@
 
         <!-- Disable the second-level cache -->
 
+        <!-- Dodanie encji do Hibernate -->
+        <mapping class="com.example.Teacher"/>
+        <mapping class="com.example.ClassTeacher"/>
+        <mapping class="com.example.ClassContainer"/>
+        <mapping class="com.example.Rate"/> <!-- Dodajemy nową encję Rate -->
     </session-factory>
 </hibernate-configuration>

@@ -3,6 +3,8 @@ package com.example;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import java.util.Date;
+
 
 public class Main {
   public static void main(String[] args) {
@@ -26,12 +28,25 @@ public class Main {
       session.save(teacher3);
       session.save(teacher4);
 
+      // Dodanie ocen
+      ClassTeacher classTeacher = new ClassTeacher("Math", 3);
+      session.save(classTeacher);
+      addRate(session, 5, classTeacher, "Good performance");
+
       // Zakończenie transakcji
       transaction.commit();
-      System.out.println("Teachers saved: " + teacher1 + ", " + teacher2 + ", " + teacher3 + ", " + teacher4);
+      System.out.println("Teachers and rates saved!");
 
     } finally {
       factory.close();  // Zamykanie sesji
     }
+  }
+
+  // Dodanie oceny do klasy
+  public static void addRate(Session session, int value, ClassTeacher classTeacher, String comment) {
+    Date rateDate = new Date(); // Pobranie aktualnej daty
+    Rate rate = new Rate(value, classTeacher, rateDate, comment);
+    session.save(rate);
+    System.out.println("Rate added: " + rate);
   }
 }
