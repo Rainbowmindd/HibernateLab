@@ -38,7 +38,6 @@ public class ClassTeacher {
         this.listTeachers = new ArrayList<>();
     }
 
-    // Getter and Setter methods
     public Long getId() {
         return id;
     }
@@ -89,16 +88,16 @@ public class ClassTeacher {
             System.out.println("This teacher ALREADY EXISTS in this group");
         } else {
             session.save(teacher);
-            listTeachers.add(teacher);  // Dodajemy również do listy
+            listTeachers.add(teacher);
             System.out.println("Teacher added successfully");
         }
     }
 
     public static void addTeacherToGroup(Session session, Teacher teacher, ClassTeacher classTeacher) {
-        // Przypisanie nauczyciela do grupy
+
         teacher.setClassTeacher(classTeacher);
 
-        // Zapisanie zmiany w bazie
+
         session.saveOrUpdate(teacher);
         System.out.println("Teacher " + teacher.getName() + " added to group " + classTeacher.getTeacherGroupName());
     }
@@ -112,7 +111,7 @@ public class ClassTeacher {
         System.out.println("Teacher " + teacher.getName() + " removed from group");
     }
     public static Teacher search(Session session, String surname) {
-        // Wykorzystanie HQL do wyszukiwania nauczyciela w bazie danych
+
         String hql = "FROM Teacher t WHERE t.surname = :surname";
         Teacher teacher = session.createQuery(hql, Teacher.class)
                 .setParameter("surname", surname)
@@ -126,7 +125,7 @@ public class ClassTeacher {
     }
 
     public static List<Teacher> searchPartial(Session session, String stringFragment) {
-        // Wykorzystanie HQL do wyszukiwania nauczycieli w bazie danych
+
         String hql = "FROM Teacher t WHERE t.surname LIKE :fragment";
         List<Teacher> teachers = session.createQuery(hql, Teacher.class)
                 .setParameter("fragment", "%" + stringFragment + "%")
@@ -142,7 +141,7 @@ public class ClassTeacher {
 
 
     public static List<Teacher> sortBySalary(Session session, ClassTeacher classTeacher) {
-        // Wykorzystanie HQL do pobrania nauczycieli z sortowaniem po wynagrodzeniu
+
         String hql = "FROM Teacher t WHERE t.classTeacher.id = :classTeacherId ORDER BY t.salary DESC";
         List<Teacher> teachers = session.createQuery(hql, Teacher.class)
                 .setParameter("classTeacherId", classTeacher.getId())
@@ -153,12 +152,10 @@ public class ClassTeacher {
     }
 
     public static void addSalary(Session session, Teacher teacher, double bonus) {
-        // Pobranie nauczyciela z bazy danych
+
         Teacher managedTeacher = session.get(Teacher.class, teacher.getId());
         if (managedTeacher != null) {
             managedTeacher.setSalary(managedTeacher.getSalary() + bonus);
-
-            // Aktualizacja nauczyciela w bazie danych
             session.saveOrUpdate(managedTeacher);
             System.out.println("CONGRATULATIONS! YOU'VE EARNED A BONUS TO YOUR SALARY! Current salary: " + managedTeacher.getSalary());
         } else {
@@ -166,10 +163,4 @@ public class ClassTeacher {
         }
     }
 
-
-
-
-
-
-    // Inne metody (addSalary, removeTeacher, changeCondition itp.)...
 }

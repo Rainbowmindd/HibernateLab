@@ -20,7 +20,7 @@ public class Teacher {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private TeacherCondition status;  //sdajhds
+    private TeacherCondition status;
 
     @Column(name = "birth_year")
     private int birthYear;
@@ -28,7 +28,7 @@ public class Teacher {
     @Column(name = "salary") //ssss
     private double salary;
     @ManyToOne
-    @JoinColumn(name = "class_teacher_id") // Foreign key do ClassTeacher
+    @JoinColumn(name = "class_teacher_id") //Foreign key do ClassTeacher
     private ClassTeacher classTeacher;
 
     // Gettery i settery

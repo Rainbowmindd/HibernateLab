@@ -25,7 +25,6 @@ public class ClassContainer {
         this.teacherGroups = new HashMap<>();
     }
 
-    // Metody operujące na grupach
     public void addClass(String groupName, int maxTeacher) {
         if (!teacherGroups.containsKey(groupName)) {
             teacherGroups.put(groupName, new ClassTeacher(groupName, maxTeacher));
@@ -39,15 +38,15 @@ public class ClassContainer {
         System.out.println("Class removed successfully!");
     }
 
-    public List<String> findEmpty() {
-        List<String> emptyGroups = new ArrayList<>();
-        for (Map.Entry<String, ClassTeacher> entry : teacherGroups.entrySet()) {
-            if (entry.getValue().getListTeachers().size() == 0) {
-                emptyGroups.add(entry.getKey());
-            }
-        }
-        return emptyGroups;
-    }
+//    public List<String> findEmpty() {
+//        List<String> emptyGroups = new ArrayList<>();
+//        for (Map.Entry<String, ClassTeacher> entry : teacherGroups.entrySet()) {
+//            if (entry.getValue().getListTeachers().size() == 0) {
+//                emptyGroups.add(entry.getKey());
+//            }
+//        }
+//        return emptyGroups;
+//    }
     public void addClass(Session session, String groupName, int maxTeacher) {
         ClassTeacher existingGroup = session.createQuery("FROM ClassTeacher WHERE teacherGroupName = :groupName", ClassTeacher.class)
                 .setParameter("groupName", groupName)
@@ -86,10 +85,5 @@ public class ClassContainer {
         System.out.println("Rate added successfully!");
     }
 
-
-
-
-
-    // Inne metody (summary, etc.)
 }
 

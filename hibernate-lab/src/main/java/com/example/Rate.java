@@ -12,20 +12,18 @@ public class Rate {
     private Long id;
 
     @Column(name = "value")
-    private double value;  // Ocena w skali 0-6
+    private double value;  //Ocena w skali 0-6
 
     @ManyToOne
     @JoinColumn(name = "class_teacher_id")
-    private ClassTeacher classTeacher;  // Grupa, dla której wystawiona została ocena
+    private ClassTeacher classTeacher;
 
     @Column(name = "date")
     @Temporal(TemporalType.DATE)
-    private Date date;  // Data wystawienia oceny
+    private Date date;
 
     @Column(name = "comment")
-    private String comment;  // Opcjonalny komentarz
-
-    // Konstruktor, Gettery i Settery
+    private String comment;
 
     public Rate() {}
 
